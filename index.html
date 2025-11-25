@@ -393,9 +393,10 @@ g.onclick = (ev) => {
       // ❌ NO coincide NADA → error → reset
       alert(`❌ "${palabraFormada}" no es válida.`);
 
-      trie.selectedPath = [];
-      trie.current = trie.root;
-      trie.expandAZ(trie.root);
+      trie.selectedPath.pop();
+      trie.current= trie.current.parent || trie.root;
+
+      trie.expandAZ(trie.current);
       renderFocused(svg, trie);
       svg.style.pointerEvents = "auto";
       return;
